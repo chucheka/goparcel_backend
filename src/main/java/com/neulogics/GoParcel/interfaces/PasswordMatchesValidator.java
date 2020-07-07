@@ -3,7 +3,9 @@ package com.neulogics.GoParcel.interfaces;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.neulogic.pollingApp.payload.SignUpRequest;
+import com.neulogics.GoParcel.payload.SignUpRequest;
+
+
 
 public class PasswordMatchesValidator implements ConstraintValidator<PasswordMatches, Object> {
 

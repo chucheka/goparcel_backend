@@ -18,13 +18,12 @@ import com.neulogics.GoParcel.audit.AuditModel;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(	name = "users",
 		uniqueConstraints = { 
 			@UniqueConstraint(columnNames = "username"),
 			@UniqueConstraint(columnNames = "email") 
 		})
-public abstract class User extends AuditModel{
+public class User extends AuditModel{
 	/**
 	 * 
 	 */
@@ -69,21 +68,19 @@ public abstract class User extends AuditModel{
             mappedBy = "user")
 	@JsonManagedReference
     private List<Parcel> parcels = new ArrayList<>();
-
-
+	
+	
 		
 	public User() {
 		
 	}
 	
 
-	public User( String username,String email,String password) {
+	public User(String username,String email,String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
-
-
 
 
 	public Long getUserId() {
@@ -93,6 +90,16 @@ public abstract class User extends AuditModel{
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+
+	public Set<String> getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+
+	public void setPhoneNumbers(Set<String> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
 	}
 
 
@@ -145,7 +152,9 @@ public abstract class User extends AuditModel{
 		this.parcels = parcels;
 	}
 	
-public void addParcel(Parcel parcel) {
+	
+
+	public void addParcel(Parcel parcel) {
 		
 		parcels.add(parcel);
 		parcel.setUser(this);
@@ -163,12 +172,12 @@ public void addParcel(Parcel parcel) {
 //	public boolean equal(Object o) {
 //		if(this == o) return true;
 //		if(o==null || getClass()!=o.getClass()) return false;
-//		return userId!=null && userId.equals((User) o).userId);
+//		return id!=null && id.equals((User) o).id);
 //	}
 
 //	@Override
 //	public String toString() {
-//		return "User [userId=" + userId + ", username=" + username + ", email=" + email + ", password=" + password
+//		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
 //				+ ", roles=" + roles + ", parcels=" + parcels + "]";
 //	}
 

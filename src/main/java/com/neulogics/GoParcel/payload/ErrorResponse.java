@@ -1,28 +1,30 @@
 package com.neulogics.GoParcel.payload;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ErrorResponse {
 
 	private int status;
 	private String message;
-	private long timeStamp;
-	List<String> errors;
-	
+	private List<String> errors;
 	
 	public ErrorResponse() {
-		super();
+		
 	}
-
-
-	public ErrorResponse(int status, String message, long timeStamp, List<String> errors) {
+	public ErrorResponse(int status, String message, List<String> errors) {
 		super();
 		this.status = status;
 		this.message = message;
-		this.timeStamp = timeStamp;
 		this.errors = errors;
-	}
+		}
 
+	public ErrorResponse(int status, String message, String error) {
+		super();
+		this.status = status;
+		this.message = message;
+		errors = Arrays.asList(error);
+		}
 
 	public int getStatus() {
 		return status;
@@ -42,17 +44,7 @@ public class ErrorResponse {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-
-	public long getTimeStamp() {
-		return timeStamp;
-	}
-
-
-	public void setTimeStamp(long timeStamp) {
-		this.timeStamp = timeStamp;
-	}
-
+	
 
 	public List<String> getErrors() {
 		return errors;
@@ -62,7 +54,5 @@ public class ErrorResponse {
 	public void setErrors(List<String> errors) {
 		this.errors = errors;
 	}
-
-	
 	
 }

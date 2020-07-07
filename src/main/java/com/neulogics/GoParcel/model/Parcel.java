@@ -14,12 +14,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.neulogics.GoParcel.audit.UserDateAudit;
 
 
 @Entity
 @Table(name="parcels")
-public class Parcel {
+public class Parcel extends UserDateAudit {
 
 	/**
 	 * 
@@ -29,7 +31,7 @@ public class Parcel {
 	@Id
 	 @GeneratedValue(generator = "parcel_generator")
      @SequenceGenerator(
-    		name = "user_generator",
+    		name = "parcel_generator",
     		sequenceName = "parcel_sequence",
     		initialValue = 1000
     		)
@@ -45,6 +47,7 @@ public class Parcel {
 	
 	private Double price;
 	
+
 	@Enumerated(EnumType.ORDINAL)
 	private Status status;
 	
@@ -55,17 +58,17 @@ public class Parcel {
     @JsonBackReference
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rider_id")
-    @JsonBackReference
-    private Rider rider;
+   // @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "rider_id")
+  //  @JsonBackReference
+//    private Rider rider;
     
     public Parcel() {
     	
     }
     
     
-	public Parcel(String pickupLocation,String destination, Double price, Status status, String presentLocation,User user, Rider rider) {
+	public Parcel(String pickupLocation,String destination, Double price, Status status, String presentLocation,User user) {
 		
 		this.pickupLocation = pickupLocation;
 		this.destination = destination;
@@ -73,7 +76,6 @@ public class Parcel {
 		this.status = status;
 		this.presentLocation = presentLocation;
 		this.user = user;
-		this.rider = rider;
 	}
 
 	public Long getParcelId() {
@@ -133,14 +135,6 @@ public class Parcel {
 	}
 
 
-	public Rider getRider() {
-		return rider;
-	}
-
-
-	public void setRider(Rider rider) {
-		this.rider = rider;
-	}
 
 
 	
