@@ -37,7 +37,7 @@ public class ParcelController {
 	@Autowired
 	private ParcelService parcelService;
 	
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String getHome() {
 		return "Welcome to sendIT APP Rest Services";
 	}
