@@ -37,6 +37,10 @@ public class ParcelController {
 	@Autowired
 	private ParcelService parcelService;
 	
+	@GetMapping("/")
+	public String getHome() {
+		return "Welcome to sendIT APP Rest Services";
+	}
 	
 	@GetMapping("/parcels/{parcelId}")
 	@PreAuthorize("hasRole('USER') or hasRole('RIDER') or hasRole('ADMIN')")
